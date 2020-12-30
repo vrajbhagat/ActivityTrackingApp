@@ -66,6 +66,8 @@ class AddActivityFragment : Fragment() {
                 false
         )
 
+        val currentDate: String = SimpleDateFormat("EEE dd, yyyy", Locale.getDefault()).format(Date())
+        Log.i("cdate is", currentDate)
 
         // Activity Dropdown List
         val adapter = ArrayAdapter(

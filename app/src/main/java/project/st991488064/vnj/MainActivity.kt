@@ -10,7 +10,8 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
 import project.st991488064.vnj.databinding.ActivityMainBinding
 
-class MainActivity : AppCompatActivity() {
+class
+MainActivity : AppCompatActivity() {
 
     private lateinit var drawerLayout: DrawerLayout
 

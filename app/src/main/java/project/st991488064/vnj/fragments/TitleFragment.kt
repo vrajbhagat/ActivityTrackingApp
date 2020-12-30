@@ -79,7 +79,10 @@ class TitleFragment : Fragment(), SensorEventListener {
         recyclerView.itemAnimator = itemAnimator
 
         //userViewModel
-        cyclingModel.getAll.observe(viewLifecycleOwner, Observer { cycle ->
+//        cyclingModel.getAll.observe(viewLifecycleOwner, Observer { cycle ->
+//            adapter.setData(cycle)
+//        })
+        cyclingModel.getAllForToday.observe(viewLifecycleOwner, Observer { cycle ->
             adapter.setData(cycle)
         })
 

@@ -22,6 +22,9 @@ interface CyclingDao {
     @Query ("SELECT * FROM cycling union select * from running union select * from weightlifting order by activityDate desc")
     fun getAll(): LiveData<List<ActivitiesEntity>>
 
+    @Query ("SELECT * FROM cycling where activityDate = :currentDate union select * from running where activityDate = :currentDate union select * from weightlifting where activityDate = :currentDate")
+    fun getAllForToday(currentDate : String): LiveData<List<ActivitiesEntity>>
+
 
     @Query("delete from cycling")
     suspend fun deleteAllCyclingEntity()

@@ -31,5 +31,7 @@ class CyclingRepository(private val cyclingDao: CyclingDao) {
     //common data
     val getAll: LiveData<List<ActivitiesEntity>> = cyclingDao.getAll()
 
-
+    fun getAllForToday(currentDate : String): LiveData<List<ActivitiesEntity>>{
+        return cyclingDao.getAllForToday(currentDate)
+    }
 }

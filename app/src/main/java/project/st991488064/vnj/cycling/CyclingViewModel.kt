@@ -9,6 +9,8 @@ import kotlinx.coroutines.launch
 import project.st991488064.vnj.database.ActivityDatabase
 import project.st991488064.vnj.database.models.ActivitiesEntity
 import project.st991488064.vnj.database.models.CyclingEntity
+import java.text.SimpleDateFormat
+import java.util.*
 
 
 //ViewModel provides data to UI
@@ -20,6 +22,9 @@ class CyclingViewModel(application: Application) : AndroidViewModel(application)
     private val cyclingRepository: CyclingRepository
     val getAll: LiveData<List<ActivitiesEntity>>
 
+    private val currentDate: String = SimpleDateFormat("MMM dd, yyyy", Locale.getDefault()).format(Date())
+    val getAllForToday: LiveData<List<ActivitiesEntity>>
+
     //init block will be first executed when CyclingViewModel will be called
     init {
 
@@ -27,7 +32,7 @@ class CyclingViewModel(application: Application) : AndroidViewModel(application)
         cyclingRepository = CyclingRepository(cyclingDao)
         getAllCyclingData = cyclingRepository.getAllCyclingData
         getAll = cyclingRepository.getAll
-
+        getAllForToday = cyclingRepository.getAllForToday(currentDate)
     }
 
     //function to add cycling data
