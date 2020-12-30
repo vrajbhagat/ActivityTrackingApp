@@ -1,0 +1,32 @@
+package project.st991488064.vnj.database.dao
+
+import androidx.lifecycle.LiveData
+import androidx.room.*
+import project.st991488064.vnj.database.models.ActivitiesEntity
+import project.st991488064.vnj.database.models.CyclingEntity
+
+
+@Dao
+interface CyclingDao {
+
+    @Query("SELECT * FROM cycling")
+    fun getAllCyclingData(): LiveData<List<CyclingEntity>>
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertCyclingData(cyclingData: CyclingEntity)
+
+    @Update
+    suspend fun updateCyclingEntity(cyclingData: CyclingEntity)
+
+
+    @Query ("SELECT * FROM cycling union select * from running union select * from weightlifting order by activityDate desc")
+    fun getAll(): LiveData<List<ActivitiesEntity>>
+
+
+    @Query("delete from cycling")
+    suspend fun deleteAllCyclingEntity()
+
+    @Query("delete from cycling where id = :id")
+    suspend fun deleteCyclingEntity(id: Long)
+
+}
